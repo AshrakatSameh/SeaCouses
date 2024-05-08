@@ -11,6 +11,12 @@ import { TeachersComponent } from './components/teachers/teachers.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { LeaderComponent } from './components/leader/leader.component';
 import { AboutComponent } from './components/about/about.component';
+import { CustomersComponent } from './components/customers/customers.component';
+import { MedicalTermsComponent } from './components/medical-terms/medical-terms.component';
+import { EnglishMedicalComponent } from './components/english-medical/english-medical.component';
+import { IELTSComponent } from './components/ielts/ielts.component';
+import { EnglishComponent } from './components/english/english.component';
+import { PhotosComponent } from './components/photos/photos.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +28,13 @@ import { AboutComponent } from './components/about/about.component';
     TeachersComponent,
     ContactComponent,
     LeaderComponent,
-    AboutComponent
+    AboutComponent,
+    CustomersComponent,
+    MedicalTermsComponent,
+    EnglishMedicalComponent,
+    IELTSComponent,
+    EnglishComponent,
+    PhotosComponent
   ],
   imports: [
     BrowserModule,
