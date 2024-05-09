@@ -1,0 +1,355 @@
+<div class="container-fluid">
+    <div class="row flex-nowrap">
+        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 my_con">
+            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                    <h3 class="fs-5 d-none d-sm-inline my_header">لوحة التحكم</h3>
+                </a>
+                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                    <li class="nav-item dropdown">
+                        <!-- Dropdown menu for Home -->
+                        <a href="#" class="nav-link px-0 align-middle dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fs-4 bi-people"></i> <span class="mr-2 d-none d-sm-inline">المدربين</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- Dropdown items -->
+                            <li><a class="dropdown-item" (click)="showTrainerListHandler()">عرض</a></li>
+                            <li><a class="dropdown-item" (click)="showAddTrainerHandler()">اضافه</a></li>
+                            <li><a class="dropdown-item" (click)="showDeleteTrainerHandler()">حذف</a></li>
+                        </ul>
+                    </li>
+                    
+                    <!-- Other menu items -->
+                    <li class="nav-item dropdown">
+                        <!-- Dropdown menu for Home -->
+                        <a href="#" class="nav-link px-0 align-middle dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fs-4 bi-people"></i> <span class="mr-2 d-none d-sm-inline">الطلبة</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- Dropdown items -->
+                            <li><a class="dropdown-item" (click)="showTraineeListHandler()">عرض</a></li>
+                            <li><a class="dropdown-item" (click)="showAddTraineeHandler()">اضافه</a></li>
+                            <li><a class="dropdown-item" (click)="showDeleteTraineeHandler()">حذف</a></li>
+                        </ul>
+                    </li>
+                  
+                    <li class="nav-item dropdown">
+                        <!-- Dropdown menu for Home -->
+                        <a href="#" class="nav-link px-0 align-middle dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fs-4 bi-grid"></i> <span class="mr-2 d-none d-sm-inline">الكورسات</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- Dropdown items -->
+                            <li><a href="#" class="dropdown-item">عرض</a></li>
+                            <li><a href="#" class="dropdown-item">اضافه</a></li>
+                            <li><a href="#" class="dropdown-item">حذف</a></li>
+                        </ul>
+                    </li>
+                    
+                  
+                </ul>
+                <hr>
+            </div>
+        </div>
+
+        <!-- Main content -->
+        <div class="col py-3">
+
+
+            <!-- // Show Trainer List -->
+
+            <div *ngIf="showTrainerList" class="table-responsive">
+                <table class="table table-striped table-sm">
+                  <thead>
+                    <tr>
+                      <th>الرقم التسلسلي</th>
+                      <th>عنوان الخبر</th>
+                      <th>الخبر</th>
+                      <th>الصورة</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- <tr >
+                      <th scope="row">{{item.id}}</th>
+                      <td>{{item.title}}</td>
+                      <td>{{item.description}}</td>
+                      <td>{{item.imageUrl}}</td>
+                    </tr> -->
+                    <tr>
+                      <th scope="row">1001</th>
+                      <td>Mark Otto</td>
+                      <td>Japan</td>
+                      <td>Html</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">1001</th>
+                      <td>Mark Otto</td>
+                      <td>Japan</td>
+                      <td>Html</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+
+              <!-- // Delete Trainer List -->
+
+              <div *ngIf="showDeleteTrainer" class="table-responsive">
+                <table class="table table-striped table-sm">
+                  <thead>
+                    <tr>
+                      <th>الرقم التسلسلي</th>
+                      <th>عنوان الخبر</th>
+                      <th>الخبر</th>
+                      <th>الصورة</th>
+                      <th>حذف</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- <tr >
+                      <th scope="row">{{item.id}}</th>
+                      <td>{{item.title}}</td>
+                      <td>{{item.description}}</td>
+                      <td>{{item.imageUrl}}</td>
+                    </tr> -->
+                    <tr>
+                      <th scope="row">1001</th>
+                      <td>Mark Otto</td>
+                      <td>Japan</td>
+                      <td>Html</td>
+                      <td><button class="btn btn-danger">حذف </button></td>
+
+                    </tr>
+                    <tr>
+                      <th scope="row">1001</th>
+                      <td>Mark Otto</td>
+                      <td>Japan</td>
+                      <td>Html</td>
+                      <td><button class="btn btn-danger">حذف </button></td>
+
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+
+              <!-- // Add Trainer List -->
+
+              <div class="container-fluid py-5" *ngIf="showAddTrainer">
+                <div class="container py-5">
+                  <div class="text-center mb-5">
+                 
+                    <h4>أضافة مدرب.</h4>
+                  </div>
+              
+                  
+                  <div class="row justify-content-center ">
+                    <div class="col-lg-8">
+                      <div class="contact-form my_form rounded p-5">
+                        <div id="success"></div>
+                        <form name="sentMessage" action="#" id="contactForm" novalidate="novalidate">
+                          <div class="control-group">
+                            <input
+                              type="text"
+                              class="form-control border-0 p-4"
+                              id="name"
+                              placeholder="الاسم"
+                              required="required"
+                              data-validation-required-message="Please enter your name"
+                            />
+                            <p class="help-block text-danger"></p>
+                          </div>
+                          <div class="control-group">
+                            <input
+                              type="email"
+                              class="form-control border-0 p-4"
+                              id="email"
+                              placeholder="البريد الالكروني"
+                              required="required"
+                              data-validation-required-message="Please enter your email"
+                            />
+                            <p class="help-block text-danger"></p>
+                          </div>
+
+                          <div class="control-group">
+                            <input
+                              type="text"
+                              class="form-control border-0 p-4"
+                              id="Jobtitle"
+                              placeholder="المسمي الوظيفي"
+                              required="required"
+                              data-validation-required-message="Please enter your email"
+                            />
+                            <p class="help-block text-danger"></p>
+                          </div>
+                        
+                         
+                          <div class="text-center">
+                            <button
+                              class="btn btn-primary py-3 px-5"
+                              type="submit"
+                              id="sendMessageButton"
+                            >
+                              حفظ
+                            </button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+              
+              
+                </div>
+              </div>
+              
+        
+              <!-- // Show Trainee List -->
+
+              <div *ngIf="showTraineeList" class="table-responsive">
+                <table class="table table-striped table-sm">
+                  <thead>
+                    <tr>
+                      <th>الرقم التسلسلي</th>
+                      <th>عنوان الخبر</th>
+                      <th>الخبر</th>
+                      <th>الصورة</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- <tr >
+                      <th scope="row">{{item.id}}</th>
+                      <td>{{item.title}}</td>
+                      <td>{{item.description}}</td>
+                      <td>{{item.imageUrl}}</td>
+                    </tr> -->
+                    <tr>
+                      <th scope="row">1001</th>
+                      <td>Mark Otto</td>
+                      <td>Japan</td>
+                      <td>Html</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">1001</th>
+                      <td>Mark Otto</td>
+                      <td>Japan</td>
+                      <td>Html</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+
+              <!-- // Delete Trainee List -->
+
+              <div *ngIf="showDeleteTrainee" class="table-responsive">
+                <table class="table table-striped table-sm">
+                  <thead>
+                    <tr>
+                      <th>الرقم التسلسلي</th>
+                      <th>عنوان الخبر</th>
+                      <th>الخبر</th>
+                      <th>الصورة</th>
+                      <th>حذف</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- <tr >
+                      <th scope="row">{{item.id}}</th>
+                      <td>{{item.title}}</td>
+                      <td>{{item.description}}</td>
+                      <td>{{item.imageUrl}}</td>
+                    </tr> -->
+                    <tr>
+                      <th scope="row">1001</th>
+                      <td>Mark Otto</td>
+                      <td>Japan</td>
+                      <td>Trainee</td>
+                      <td><button class="btn btn-danger">حذف </button></td>
+
+                    </tr>
+                    <tr>
+                      <th scope="row">1001</th>
+                      <td>Mark Otto</td>
+                      <td>Japan</td>
+                      <td>Html</td>
+                      <td><button class="btn btn-danger">حذف </button></td>
+
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+
+              <!-- // Add Trainee List -->
+
+              <div class="container-fluid py-5" *ngIf="showAddTrainee">
+                <div class="container py-5">
+                  <div class="text-center mb-5">
+                 
+                    <h4>أضافة متدرب.</h4>
+                  </div>
+              
+                  
+                  <div class="row justify-content-center ">
+                    <div class="col-lg-8">
+                      <div class="contact-form my_form rounded p-5">
+                        <div id="success"></div>
+                        <form name="sentMessage" action="#" id="contactForm" novalidate="novalidate">
+                          <div class="control-group">
+                            <input
+                              type="text"
+                              class="form-control border-0 p-4"
+                              id="name"
+                              placeholder="الاسم"
+                              required="required"
+                              data-validation-required-message="Please enter your name"
+                            />
+                            <p class="help-block text-danger"></p>
+                          </div>
+                          <div class="control-group">
+                            <input
+                              type="email"
+                              class="form-control border-0 p-4"
+                              id="email"
+                              placeholder="البريد الالكروني"
+                              required="required"
+                              data-validation-required-message="Please enter your email"
+                            />
+                            <p class="help-block text-danger"></p>
+                          </div>
+
+                          <div class="control-group">
+                            <input
+                              type="text"
+                              class="form-control border-0 p-4"
+                              id="course"
+                              placeholder="الكورس "
+                              required="required"
+                              data-validation-required-message="Please enter your email"
+                            />
+                            <p class="help-block text-danger"></p>
+                          </div>
+                        
+                         
+                          <div class="text-center">
+                            <button
+                              class="btn btn-primary py-3 px-5"
+                              type="submit"
+                              id="sendMessageButton"
+                            >
+                              حفظ
+                            </button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+              
+              
+                </div>
+              </div>
+              
+
+        </div>
+    </div>
+</div>

@@ -17,6 +17,8 @@ import { EnglishMedicalComponent } from './components/english-medical/english-me
 import { IELTSComponent } from './components/ielts/ielts.component';
 import { EnglishComponent } from './components/english/english.component';
 import { PhotosComponent } from './components/photos/photos.component';
+import { CheckComponent } from './components/check/check.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,10 @@ import { PhotosComponent } from './components/photos/photos.component';
     EnglishMedicalComponent,
     IELTSComponent,
     EnglishComponent,
-    PhotosComponent
+    PhotosComponent,
+    CheckComponent,
+    DashboardComponent,
+    
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,6 @@
+/* Ensure the button is visible across all screen sizes */
+@media (max-width: 576px), (min-width: 577px) {
+    .btn {
+        display: block; /* Ensure the button is displayed */
+    }
+}

@@ -12,6 +12,8 @@ import { EnglishMedicalComponent } from './components/english-medical/english-me
 import { IELTSComponent } from './components/ielts/ielts.component';
 import { EnglishComponent } from './components/english/english.component';
 import { PhotosComponent } from './components/photos/photos.component';
+import { CheckComponent } from './components/check/check.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 const routes: Routes = [
   {path:'home',component:MainComponent},
@@ -26,6 +28,8 @@ const routes: Routes = [
   {path:'IELTS',component:IELTSComponent},
   {path:'english',component:EnglishComponent},
   {path:'photos',component:PhotosComponent},
+  {path:'check',component:CheckComponent},
+  {path:'dash',component:DashboardComponent},
   {path:'**',component:MainComponent},
   
 ];
