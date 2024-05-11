@@ -1,10 +1,57 @@
-import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { TrainerService } from 'src/app/Services/trainer.service';
 
 @Component({
   selector: 'app-teachers',
   templateUrl: './teachers.component.html',
   styleUrls: ['./teachers.component.css']
 })
-export class TeachersComponent {
+export class TeachersComponent implements OnInit {
+
+  trainers: any[] = [];
+  
+  imgs:any[]=[]
+  urlPic=''
+  trainerForm!: FormGroup;
+  fileToUpload!: File | null;
+  constructor(private trainer: TrainerService,
+    private fb: FormBuilder,
+    private http: HttpClient,
+    private readonly sanitizer: DomSanitizer){
+      this.trainerForm = this.fb.group({
+        name: ['', Validators.required],
+        description: ['', Validators.required],
+        country: ['', Validators.required],
+        imageFile: ['', Validators.required]
+      });
+    }
+  ngOnInit(): void {
+    this.getAllTrainers()
+  }
+
+  // public get safeUrlPic(): SafeUrl {
+  //    return this.sanitizer.bypassSecurityTrustResourceUrl(this.urlPic); }
+     
+  getAllTrainers(){
+    this.trainer.getAllTrainers().subscribe((res:any)=>{
+      this.trainers = res
+
+      // for(let i in res){
+      //   this.sanitizer.bypassSecurityTrustResourceUrl(i)
+      // }
+      
+      // const reader = new FileReader();
+      // reader.readAsDataURL(res.imageUrl)
+      // reader.onload=()=>{
+      //   this.url = reader.result as string;
+      // }
+      console.log(this.trainers);
+
+      
+    })
+  }
 
 }

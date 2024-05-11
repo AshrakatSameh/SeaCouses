@@ -22,11 +22,11 @@
       <!-- <h5 class="text-primary text-uppercase mb-3" style="letter-spacing: 5px;">فريقنا</h5> -->
       <h1>فريقنا</h1>
     </div>
-    <div class="row">
-      <div class="col-md-6 col-lg-3 text-center team mb-4">
-        <div class="team-item rounded overflow-hidden mb-2">
-          <div class="team-img position-relative">
-            <img class="img-fluid" src="assets/img/team-1.jpg" alt="" />
+    <div class="row" >
+      <div class="col-md-6 col-lg-3 text-center team mb-4" *ngFor="let item of trainers" >
+        <div class="team-item rounded overflow-hidden mb-2" >
+          <div class="team-img position-relative" >
+            <img class="img-fluid" [src]= "item.imageUrl" alt="" />
             <div class="team-social">
               <a class="btn btn-outline-light btn-square mx-1" href="#"
                 ><i class="fab fa-twitter"></i
@@ -40,13 +40,13 @@
             </div>
           </div>
           <div class="bg-secondary p-4">
-            <h5>JMahdiyyah</h5>
-            <h6>South Africa</h6>
-            <p >English Teacher</p>
+            <h5>{{item.name}}</h5>
+            <h6>{{item.country}}</h6>
+            <p >{{item.description}}</p>
           </div>
         </div>
       </div>
-      <div class="col-md-6 col-lg-3 text-center team mb-4">
+      <!-- <div class="col-md-6 col-lg-3 text-center team mb-4">
         <div class="team-item rounded overflow-hidden mb-2">
           <div class="team-img position-relative">
             <img class="img-fluid" src="assets/img/team-2.jpg" alt="" />
@@ -137,7 +137,7 @@
             <p class="m-0">OET Tutor</p>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>
