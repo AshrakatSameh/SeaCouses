@@ -22,6 +22,10 @@ import { PhotosComponent } from './components/photos/photos.component';
 import { CheckComponent } from './components/check/check.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './components/login/login.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatMenuModule } from '@angular/material/menu';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -42,13 +46,17 @@ import { ReactiveFormsModule } from '@angular/forms';
     PhotosComponent,
     CheckComponent,
     DashboardComponent,
+    LoginComponent,
     
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule 
+    ReactiveFormsModule,
+    BrowserAnimationsModule ,
+    MatMenuModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

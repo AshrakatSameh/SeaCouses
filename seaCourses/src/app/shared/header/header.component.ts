@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/Services/auth.service';
+import {MatMenuModule} from '@angular/material/menu';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-header',
@@ -7,4 +11,19 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
+  authService= inject(AuthService);
+  router = inject(Router);
+  toast= inject(NgToastService)
+  
+
+  isLoggedIn() {
+    return this.authService.isLoggedIn();
+  }
+
+  logout = () => {
+    this.authService.logout();
+    // this.toast.success({detail:"SUCCESS",summary: 'logged out', duration: 1000});
+  
+    this.router.navigate(['login']);
+  };
 }

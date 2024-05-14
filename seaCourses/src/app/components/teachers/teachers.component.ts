@@ -38,16 +38,6 @@ export class TeachersComponent implements OnInit {
   getAllTrainers(){
     this.trainer.getAllTrainers().subscribe((res:any)=>{
       this.trainers = res
-
-      // for(let i in res){
-      //   this.sanitizer.bypassSecurityTrustResourceUrl(i)
-      // }
-      
-      // const reader = new FileReader();
-      // reader.readAsDataURL(res.imageUrl)
-      // reader.onload=()=>{
-      //   this.url = reader.result as string;
-      // }
       console.log(this.trainers);
 
       

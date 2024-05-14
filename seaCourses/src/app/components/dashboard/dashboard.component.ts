@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TrainerService } from 'src/app/Services/trainer.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,6 +12,8 @@ import { TrainerService } from 'src/app/Services/trainer.service';
 export class DashboardComponent implements OnInit {
   trainers: any[] = [];
   // myForm!: FormGroup ;
+
+  private tenp = environment.apiUrl + 'Trainer';
 
   trainerForm!: FormGroup;
   fileToUpload!: File | null;
@@ -30,13 +33,7 @@ export class DashboardComponent implements OnInit {
       country: ['', Validators.required],
       imageFile: ['', Validators.required]
     });
-  //   this.myForm = this.fb.group({
-     
-  //     description: ['', Validators.required],
-  //     name: ['', Validators.required],
-  //     country:['' , Validators.required],
-  //     imageUrl:['',Validators.required]
-  // });
+ 
   }
   url =""
   handleFileInput(event: Event) {
@@ -45,18 +42,7 @@ export class DashboardComponent implements OnInit {
     if (files && files.length > 0) {
       this.fileToUpload = files[0];
       console.log(this.fileToUpload); // Log the selected file to verify
-      // var reader= new FileReader();
-      // reader.readAsDataURL(event.target.files[0])
-      // reader.onload= (event:any)=>{
-      //   this.url = event.target.result;
-      // }
-      //  if (inputElement.files && inputElement.files.length > 0) {
-      //   const reader = new FileReader();
-      //   reader.readAsDataURL(inputElement.files[0]);
-      //   reader.onload = () => {
-      //     this.url = reader.result as string;
-      //   };
-      // }
+      
     } 
     else {
       console.error('No file selected');
@@ -96,7 +82,7 @@ export class DashboardComponent implements OnInit {
   
     formData.append('imageFile', this.fileToUpload!); // Assert non-null with !
   
-    this.http.post<any>('https://localhost:7146/api/Trainer/addTrainer', formData)
+    this.http.post<any>(this.tenp + '/AddTrainer', formData)
       .subscribe(
         (response) => {
           console.log('Trainer created successfully:', response);
