@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -26,6 +26,9 @@ import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StripeModule } from 'stripe-angular';
 
+import { LoginComponent } from './components/login/login.component';
+import { MatMenuModule } from '@angular/material/menu';
+// import { NgToastModule } from 'ng-angular-popup';
 
 @NgModule({
   declarations: [
@@ -45,24 +48,30 @@ import { StripeModule } from 'stripe-angular';
     EnglishComponent,
     PhotosComponent,
     CheckComponent,
-    DashboardComponent
+    DashboardComponent,
     
+    LoginComponent,
     
   ],
   imports: [
     BrowserModule,
     CommonModule,
-    
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule ,
     FormsModule,
     BrowserAnimationsModule,
-    StripeModule.forRoot('pk_test_51PF5FMAG762v7YxJqAKEBMwN0frg1nEVfs7uTghZQSE49hfjnCNteOCS2gFSda3sylwYIXHqbgTr79YvujJ6pLPI00WUunxt5i'),
+    // StripeModule.forRoot('pk_test_51PF5FMAG762v7YxJqAKEBMwN0frg1nEVfs7uTghZQSE49hfjnCNteOCS2gFSda3sylwYIXHqbgTr79YvujJ6pLPI00WUunxt5i'),
 
 
+    MatMenuModule,
+    // NgToastModule,
   ],
-  providers: [],
+  providers: [
+    // provide: HTTP_INTERCEPTORS,
+    // useClass: TokenInterceptor,
+    // multi: true
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

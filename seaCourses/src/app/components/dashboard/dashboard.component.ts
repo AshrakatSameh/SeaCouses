@@ -1,7 +1,9 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ContactSupportService } from 'src/app/Services/contact-support.service';
 import { TrainerService } from 'src/app/Services/trainer.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,56 +13,76 @@ import { TrainerService } from 'src/app/Services/trainer.service';
 export class DashboardComponent implements OnInit {
   trainers: any[] = [];
   // myForm!: FormGroup ;
+  contactSupport:any []=[];
+
+  private tenp = environment.apiUrl + 'Trainer';
 
   trainerForm!: FormGroup;
   fileToUpload!: File | null;
 
   ngOnInit(): void {
     this.getAllTrainers();
+    this.getAllContactSupport();
   }
 
   constructor(private trainer: TrainerService,
     private fb: FormBuilder,
-    private http: HttpClient
+    private http: HttpClient,
+    private tech: ContactSupportService
   ){
 
     this.trainerForm = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
+      price:['', Validators.required],
       country: ['', Validators.required],
       Rate:['' , Validators.required],
       imageFile: ['', Validators.required]
     });
-  //   this.myForm = this.fb.group({
-     
-  //     description: ['', Validators.required],
-  //     name: ['', Validators.required],
-  //     country:['' , Validators.required],
-  //     imageUrl:['',Validators.required]
-  // });
+
+  
+ 
   }
-  url =""
+  
   handleFileInput(event: Event) {
     const inputElement = event.target as HTMLInputElement;
     const files: FileList | null = inputElement.files;
     if (files && files.length > 0) {
       this.fileToUpload = files[0];
       console.log(this.fileToUpload); // Log the selected file to verify
-      // var reader= new FileReader();
-      // reader.readAsDataURL(event.target.files[0])
-      // reader.onload= (event:any)=>{
-      //   this.url = event.target.result;
-      // }
-      //  if (inputElement.files && inputElement.files.length > 0) {
-      //   const reader = new FileReader();
-      //   reader.readAsDataURL(inputElement.files[0]);
-      //   reader.onload = () => {
-      //     this.url = reader.result as string;
-      //   };
-      // }
+      
     } 
     else {
       console.error('No file selected');
+    }
+  }
+  // contact tech support
+  getAllContactSupport(){
+    this.tech.getAllTrainers().subscribe((res:any)=>{
+      this.contactSupport = res
+      console.log(this.contactSupport);   
+    })
+  }
+
+  deleteContactSupportById(id: number) {
+    const confirmed = window.confirm('Are you sure you want to delete this record?');
+      
+    // If the user confirmed the deletion
+    if (confirmed) {
+        // Proceed with deletion
+        this.tech.deletecontactSupportsById(id).subscribe(
+            () => {
+                console.log('Record deleted successfully');
+                // Refresh data after successful deletion
+                this.getAllContactSupport();
+            },
+            error => {
+                console.error('Error deleting record:', error);
+            }
+        );
+    } else {
+        // User canceled the deletion
+        console.log('Deletion canceled');
     }
   }
 
@@ -98,6 +120,7 @@ export class DashboardComponent implements OnInit {
     formData.append('imageFile', this.fileToUpload!); // Assert non-null with !
   
     this.http.post<any>('http://localhost:5000/api/Trainer/addTrainer', formData)
+    this.http.post<any>(this.tenp + '/AddTrainer', formData)
       .subscribe(
         (response) => {
           alert("Done")
@@ -257,6 +280,47 @@ deletenewsById(id: number) {
     this.showDeleteCourses = false;
   }
 
+  showCoursesListHandler(): void {
+    this.showTrainerList = false;
+    this.showAddTrainer = false;
+    this.showDeleteTrainer = false;
+
+    this.showTraineeList = false;
+    this.showAddTrainee = false;
+    this.showDeleteTrainee = false;
+
+    this.showCoursesList = true;
+    this.showAddCourses = false;
+    this.showDeleteCourses = false;
+  }
+
+  // showAddCourseHandler(): void {
+  //   this.showTrainerList = false;
+  //   this.showAddTrainer = false;
+  //   this.showDeleteTrainer = false;
+
+  //   this.showTraineeList = false;
+  //   this.showAddTrainee = false;
+  //   this.showDeleteTrainee = false;
+
+  //   this.showCoursesList = false;
+  //   this.showAddCourses = true;
+  //   this.showDeleteCourses = false;
+  // }
+
+  showDeleteCourseHandler(): void {
+    this.showTrainerList = false;
+    this.showAddTrainer = false;
+    this.showDeleteTrainer = false;
+
+    this.showTraineeList = false;
+    this.showAddTrainee = false;
+    this.showDeleteTrainee = false;
+
+    this.showCoursesList = false;
+    this.showAddCourses = false;
+    this.showDeleteCourses = true;
+  }
 
 
 }

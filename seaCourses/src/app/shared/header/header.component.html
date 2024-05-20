@@ -32,9 +32,22 @@
                         </div>
                         <a routerLink="photos" class="nav-item nav-link">معرض الصور</a>
                         <a routerLink="contact" class="nav-item nav-link">اتصل بنا</a>
-                        <a routerLink="dash" class="nav-item nav-link">لوحة التحكم</a>
-
+                        <!-- <a routerLink="dash" class="nav-item nav-link">لوحة التحكم</a> -->
                     </div>
+                    <div *ngIf="isLoggedIn(); then loggedInTemplate else loggedOutTemplate"></div>
+                    <ng-template #loggedInTemplate >
+                        <div class="navbar-nav py-0" *ngIf="authService.getUserDetail() as userDetail">
+                            <span class="nav-item nav-link" routerLink = "dash">{{userDetail.fullName}} Dashboard</span>
+                            <button class="dropdown-item" (click)="logout()">
+                                <i class="bi bi-box-arrow-right" ></i> Logout
+                            </button>
+                           
+                        </div>
+                    </ng-template>
+
+                    <ng-template #loggedOutTemplate>
+                        
+                    </ng-template>
                     <!-- <a class="btn btn-primary py-2 px-4 ml-auto d-none d-lg-block" href="">Join Now</a> -->
                 </div>
             </nav>
