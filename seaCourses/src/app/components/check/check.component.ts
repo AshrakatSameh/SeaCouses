@@ -2,20 +2,28 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { StripeService } from 'ngx-stripe';
 
 
+
 @Component({
   selector: 'app-check',
   templateUrl: './check.component.html',
   styleUrls: ['./check.component.css']
 })
 export class CheckComponent implements OnInit {
- 
-   
-  constructor() { }
+
+
+
+  constructor() {
+
+   }
   handler:any = null;
   ngOnInit() {
  
     this.loadStripe();
   }
+
+
+
+
  
   pay(amount: any) {    
  

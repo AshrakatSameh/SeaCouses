@@ -28,6 +28,8 @@ import { StripeModule } from 'stripe-angular';
 
 import { LoginComponent } from './components/login/login.component';
 import { MatMenuModule } from '@angular/material/menu';
+import { NgToastModule } from 'ng-angular-popup';
+import { BookingComponent } from './components/booking/booking.component';
 // import { NgToastModule } from 'ng-angular-popup';
 
 @NgModule({
@@ -49,8 +51,8 @@ import { MatMenuModule } from '@angular/material/menu';
     PhotosComponent,
     CheckComponent,
     DashboardComponent,
-    
     LoginComponent,
+    BookingComponent
     
   ],
   imports: [
@@ -65,7 +67,7 @@ import { MatMenuModule } from '@angular/material/menu';
 
 
     MatMenuModule,
-    // NgToastModule,
+    NgToastModule,
   ],
   providers: [
     // provide: HTTP_INTERCEPTORS,
