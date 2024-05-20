@@ -28,6 +28,7 @@ export class DashboardComponent implements OnInit {
       name: ['', Validators.required],
       description: ['', Validators.required],
       country: ['', Validators.required],
+      Rate:['' , Validators.required],
       imageFile: ['', Validators.required]
     });
   //   this.myForm = this.fb.group({
@@ -96,9 +97,10 @@ export class DashboardComponent implements OnInit {
   
     formData.append('imageFile', this.fileToUpload!); // Assert non-null with !
   
-    this.http.post<any>('https://localhost:7146/api/Trainer/addTrainer', formData)
+    this.http.post<any>('http://localhost:5000/api/Trainer/addTrainer', formData)
       .subscribe(
         (response) => {
+          alert("Done")
           console.log('Trainer created successfully:', response);
           // Reset form after successful submission
           this.trainerForm.reset();
@@ -122,7 +124,6 @@ deletenewsById(id: number) {
       this.trainer.deletetrainersById(id).subscribe(
           () => {
               console.log('Record deleted successfully');
-              // Refresh data after successful deletion
               this.getAllTrainers();
           },
           error => {

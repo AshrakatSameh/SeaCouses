@@ -62,10 +62,12 @@
                 <table class="table table-striped table-sm">
                   <thead>
                     <tr>
-                      <th>Serial Number</th>
-                      <th>Name</th>
-                      <th>Description</th>
-                      <th>Image</th>
+                      <th>الرقم التسلسلي</th>
+                      <th>الأسم</th>
+                      <th>الوصف</th>
+                      <th>التقييم</th>
+                      <th>البلد</th>
+                      <th>الصورة</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -73,21 +75,12 @@
                       <th scope="row">{{item.id}}</th>
                       <td>{{item.name}}</td>
                       <td>{{item.description}}</td>
-                      <td><img [src]="item.imageFile"></td>
-                      <td>{{item.imageFile}}</td>
+                      <td>{{item.rate}}</td>
+                      <td>{{item.country}}</td>
+                      <td><img [src]="item.imageUrl" width="40px" height="40px"></td>
+                      <!-- <td>{{item.imageFile}}</td> -->
                     </tr>
-                    <!-- <tr>
-                      <th scope="row">1001</th>
-                      <td>Mark Otto</td>
-                      <td>Japan</td>
-                      <td>Html</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">1001</th>
-                      <td>Mark Otto</td>
-                      <td>Japan</td>
-                      <td>Html</td>
-                    </tr> -->
+                
                   </tbody>
                 </table>
               </div>
@@ -102,6 +95,7 @@
                       <th>الرقم التسلسلي</th>
                       <th>الأسم</th>
                       <th>الوصف</th>
+                      <th>التقييم</th>
                       <th>البلد</th>
                       <th>الصورة</th>
                       <th>حذف</th>
@@ -112,19 +106,13 @@
                       <th scope="row">{{item.id}}</th>
                       <td>{{item.name}}</td>
                       <td>{{item.description}}</td>
+                      <td>{{item.rate}}</td>
                       <td>{{item.country}}</td>
-                      <td>{{item.imageFile}}</td>
+                      <td><img [src]="item.imageUrl" width="40px" height="40px"></td>
                       <td><button class="btn btn-danger" (click)="deletenewsById(item.id)">حذف </button></td>
                     </tr>
                    
-                    <!-- <tr>
-                      <th scope="row">1001</th>
-                      <td>Mark Otto</td>
-                      <td>Japan</td>
-                      <td>Html</td>
-                      <td><button class="btn btn-danger">حذف </button></td>
-
-                    </tr> -->
+                   
                   </tbody>
                 </table>
               </div>
@@ -159,17 +147,7 @@
                             />
                             <p class="help-block text-danger"></p>
                           </div>
-                          <!-- <div class="control-group">
-                            <input
-                              type="email"
-                              class="form-control border-0 p-4"
-                              id="email"
-                              placeholder="البريد الالكروني"
-                              required="required"
-                              data-validation-required-message="Please enter your email"
-                            />
-                            <p class="help-block text-danger"></p>
-                          </div> -->
+                         
 
                           <div class="control-group">
                             <input
@@ -179,7 +157,20 @@
                               placeholder="الوصف"
                               formControlName="description"
                               required="required"
-                              data-validation-required-message="Please enter your email"
+                              data-validation-required-message="Please enter your description"
+                            />
+                            <p class="help-block text-danger"></p>
+                          </div>
+
+                          <div class="control-group">
+                            <input
+                              type="number"
+                              class="form-control border-0 p-4"
+                              id="Rate"
+                              placeholder="تقييم"
+                              formControlName="Rate"
+                              required="required"
+                              data-validation-required-message="Please enter your Rate"
                             />
                             <p class="help-block text-danger"></p>
                           </div>
@@ -198,12 +189,12 @@
                           </div>
                         
                           <div class="control-group">
-                            <input class="form-control border-0 p-4" name="imageFile"                
+                            <input class="form-control border-0 " name="imageFile"                
                    formControlName="imageFile"
                 type="file" id="imageFile" (change)="handleFileInput($event)">
                           </div>
                          
-                          <div class="text-center">
+                          <div class="text-center pt-3">
                             <button
                               class="btn btn-primary py-3 px-5"
                               type="submit"
@@ -313,7 +304,8 @@
                     <div class="col-lg-8">
                       <div class="contact-form my_form rounded p-5">
                         <div id="success"></div>
-                        <form name="sentMessage" action="#" id="contactForm" novalidate="novalidate">
+                        <form name="sentMessage"  [formGroup]="trainerForm"
+                        (ngSubmit)="onSubmit()" novalidate="novalidate">
                           <div class="control-group">
                             <input
                               type="text"

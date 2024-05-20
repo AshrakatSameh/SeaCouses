@@ -21,7 +21,11 @@ import { EnglishComponent } from './components/english/english.component';
 import { PhotosComponent } from './components/photos/photos.component';
 import { CheckComponent } from './components/check/check.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StripeModule } from 'stripe-angular';
+
 
 @NgModule({
   declarations: [
@@ -41,14 +45,22 @@ import { ReactiveFormsModule } from '@angular/forms';
     EnglishComponent,
     PhotosComponent,
     CheckComponent,
-    DashboardComponent,
+    DashboardComponent
+    
     
   ],
   imports: [
     BrowserModule,
+    CommonModule,
+    
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule 
+    ReactiveFormsModule ,
+    FormsModule,
+    BrowserAnimationsModule,
+    StripeModule.forRoot('pk_test_51PF5FMAG762v7YxJqAKEBMwN0frg1nEVfs7uTghZQSE49hfjnCNteOCS2gFSda3sylwYIXHqbgTr79YvujJ6pLPI00WUunxt5i'),
+
+
   ],
   providers: [],
   bootstrap: [AppComponent]

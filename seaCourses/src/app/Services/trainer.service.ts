@@ -9,12 +9,12 @@ export class TrainerService {
 
   constructor(private http: HttpClient) { }
 
-  private apiURL = 'https://localhost:7146/api/Trainer/AddTrainer';
-  private basicURL = 'https://localhost:7146/api/Trainer';
+  private apiURL = 'http://localhost:5000/api/Trainer/AddTrainer';
+  private basicURL = 'http://localhost:5000/api/Trainer';
 
 
   getAllTrainers(){
-    return this.http.get('https://localhost:7146/api/Trainer');
+    return this.http.get('http://localhost:5000/api/Trainer');
 
   }
 
