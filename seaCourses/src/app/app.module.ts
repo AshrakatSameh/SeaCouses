@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -21,11 +21,13 @@ import { EnglishComponent } from './components/english/english.component';
 import { PhotosComponent } from './components/photos/photos.component';
 import { CheckComponent } from './components/check/check.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatMenuModule } from '@angular/material/menu';
 import { CommonModule } from '@angular/common';
+import { TokenInterceptor } from './interceptor/token.interceptor';
+import { NgToastModule } from 'ng-angular-popup';
 
 @NgModule({
   declarations: [
@@ -56,9 +58,15 @@ import { CommonModule } from '@angular/common';
     ReactiveFormsModule,
     BrowserAnimationsModule ,
     MatMenuModule,
-    CommonModule
+    CommonModule,
+    NgToastModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [
+    // provide: HTTP_INTERCEPTORS,
+    // useClass: TokenInterceptor,
+    // multi: true
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

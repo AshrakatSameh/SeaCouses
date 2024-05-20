@@ -36,13 +36,13 @@
                     <li class="nav-item dropdown">
                         <!-- Dropdown menu for Home -->
                         <a href="#" class="nav-link px-0 align-middle dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fs-4 bi-grid"></i> <span class="mr-2 d-none d-sm-inline">الكورسات</span>
+                            <i class="fs-4 bi-grid"></i> <span class="mr-2 d-none d-sm-inline">الشكاوى</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- Dropdown items -->
-                            <li><a href="#" class="dropdown-item">عرض</a></li>
-                            <li><a href="#" class="dropdown-item">اضافه</a></li>
-                            <li><a href="#" class="dropdown-item">حذف</a></li>
+                            <li><a class="dropdown-item" (click)="showCoursesListHandler()">عرض</a></li>
+                            <!-- <li><a href="#" class="dropdown-item">اضافه</a></li> -->
+                            <li><a (click)="showDeleteCourseHandler()" class="dropdown-item">حذف</a></li>
                         </ul>
                     </li>
                     
@@ -65,7 +65,7 @@
                       <th>Serial Number</th>
                       <th>Name</th>
                       <th>Description</th>
-                      <th>Image</th>
+                      <th>Price</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -73,21 +73,9 @@
                       <th scope="row">{{item.id}}</th>
                       <td>{{item.name}}</td>
                       <td>{{item.description}}</td>
-                      <td><img [src]="item.imageFile"></td>
-                      <td>{{item.imageFile}}</td>
+                      <td>{{item.price}}</td>
+                      <!-- <td>{{item.imageFile}}</td> -->
                     </tr>
-                    <!-- <tr>
-                      <th scope="row">1001</th>
-                      <td>Mark Otto</td>
-                      <td>Japan</td>
-                      <td>Html</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">1001</th>
-                      <td>Mark Otto</td>
-                      <td>Japan</td>
-                      <td>Html</td>
-                    </tr> -->
                   </tbody>
                 </table>
               </div>
@@ -116,15 +104,6 @@
                       <td>{{item.imageFile}}</td>
                       <td><button class="btn btn-danger" (click)="deletenewsById(item.id)">حذف </button></td>
                     </tr>
-                   
-                    <!-- <tr>
-                      <th scope="row">1001</th>
-                      <td>Mark Otto</td>
-                      <td>Japan</td>
-                      <td>Html</td>
-                      <td><button class="btn btn-danger">حذف </button></td>
-
-                    </tr> -->
                   </tbody>
                 </table>
               </div>
@@ -159,17 +138,150 @@
                             />
                             <p class="help-block text-danger"></p>
                           </div>
-                          <!-- <div class="control-group">
+                       
+
+                          <div class="control-group">
                             <input
-                              type="email"
+                              type="text"
                               class="form-control border-0 p-4"
-                              id="email"
-                              placeholder="البريد الالكروني"
+                              id="description"
+                              placeholder="الوصف"
+                              formControlName="description"
                               required="required"
                               data-validation-required-message="Please enter your email"
                             />
                             <p class="help-block text-danger"></p>
-                          </div> -->
+                          </div>
+
+                          <div class="control-group">
+                            <input
+                              type="text"
+                              class="form-control border-0 p-4"
+                              id="country"
+                              placeholder="بلد"
+                              required="required"
+                              formControlName="country"
+                              data-validation-required-message="Please enter your country"
+                            />
+                            <p class="help-block text-danger"></p>
+                          </div>
+                          <div class="control-group">
+                            <input
+                              type="text"
+                              class="form-control border-0 p-4"
+                              id="price"
+                              placeholder="السعر"
+                              required="required"
+                              formControlName="price"
+                              data-validation-required-message="Please enter price"
+                            />
+                            <p class="help-block text-danger"></p>
+                          </div>
+                        
+                          <div class="control-group">
+                            <input class="form-control border-0 p-4" name="imageFile"                
+                   formControlName="imageFile"
+                type="file" id="imageFile" (change)="handleFileInput($event)">
+                          </div>
+                         
+                          <div class="text-center">
+                            <button
+                              class="btn btn-primary py-3 px-5"
+                              type="submit"
+                              
+                            >
+                              حفظ
+                            </button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+              
+              
+                </div>
+              </div>
+              
+
+              <!-- TECH SUPPORT PART -->
+              <div *ngIf="showCoursesList" class="table-responsive">
+                <table class="table table-striped table-sm">
+                  <thead>
+                    <tr>
+                      <th>Serial Number</th>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Message</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of contactSupport" >
+                      <th scope="row">{{item.id}}</th>
+                      <td>{{item.name}}</td>
+                      <td>{{item.email}}</td>
+                      <td>{{item.message}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+
+              <!-- // Delete Trainer List -->
+
+              <div *ngIf="showDeleteCourses" class="table-responsive">
+                <table class="table table-striped table-sm">
+                  <thead>
+                    <tr>
+                      <th>Serial Number</th>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Message</th>
+                      <th>حذف</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of contactSupport">
+                      <th scope="row">{{item.id}}</th>
+                      <td>{{item.name}}</td>
+                      <td>{{item.email}}</td>
+                      <td>{{item.message}}</td>
+                      <td><button class="btn btn-danger" (click)="deleteContactSupportById(item.id)">حذف </button></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+
+              <!-- // Add Trainer List -->
+
+              <div class="container-fluid py-5" *ngIf="showAddTrainer">
+                <div class="container py-5">
+                  <div class="text-center mb-5">
+                 
+                    <h4>أضافة مدرب.</h4>
+                  </div>
+              
+                  
+                  <div class="row justify-content-center ">
+                    <div class="col-lg-8">
+                      <div class="contact-form my_form rounded p-5">
+                        <div id="success"></div>
+                        <form name="sentMessage" [formGroup]="trainerForm"
+                        (ngSubmit)="onSubmit()"
+                        action="#" id="contactForm" novalidate="novalidate">
+                          <div class="control-group">
+                            <input
+                              type="text"
+                              class="form-control border-0 p-4"
+                              id="name"
+                              placeholder="الاسم"
+                              required="required"
+                              formControlName="name"
+                              data-validation-required-message="Please enter your name"
+                            />
+                            <p class="help-block text-danger"></p>
+                          </div>
+                       
 
                           <div class="control-group">
                             <input
@@ -220,7 +332,8 @@
               
                 </div>
               </div>
-              
+
+
         
               <!-- // Show Trainee List -->
 
@@ -363,10 +476,9 @@
                       </div>
                     </div>
                   </div>
-              
-              
-                </div>
-              </div>
+
+                  <!-- Show Course list -->
+             
               
 
         </div>

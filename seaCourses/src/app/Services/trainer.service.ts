@@ -10,8 +10,7 @@ export class TrainerService {
 
   constructor(private http: HttpClient) { }
 
-  private apiURL = 'http://localhost:5000/api/Trainer/AddTrainer';
-  private basicURL = 'http://localhost:5000/api/Trainer';
+  
   private tenp = environment.apiUrl + 'Trainer';
 
   getAllTrainers(){
@@ -22,7 +21,7 @@ export class TrainerService {
 
   posttrainers(data: any): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post(this.tenp + 'AddTrainer', data, { headers });
+    return this.http.post(this.tenp + '/AddTrainer', data, { headers });
 }
 
 deletetrainersById(id: number): Observable<void> {

@@ -15,6 +15,7 @@ import { PhotosComponent } from './components/photos/photos.component';
 import { CheckComponent } from './components/check/check.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LoginComponent } from './components/login/login.component';
+import { authGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {path:'home',component:MainComponent},
@@ -30,7 +31,7 @@ const routes: Routes = [
   {path:'english',component:EnglishComponent},
   {path:'photos',component:PhotosComponent},
   {path:'check',component:CheckComponent},
-  {path:'dash',component:DashboardComponent},
+  {path:'dash',component:DashboardComponent ,canActivate: [authGuard]},
   {path: 'login', component:LoginComponent},
   {path:'**',component:MainComponent},
   

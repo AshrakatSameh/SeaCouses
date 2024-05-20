@@ -65,6 +65,6 @@ export class AuthService {
     localStorage.clear();
   };
 
-  private getToken = (): string | null =>
+  getToken = (): string | null =>
     localStorage.getItem(this.tokenKey) || '';
 }
