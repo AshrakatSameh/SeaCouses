@@ -12,7 +12,7 @@ export class IELTSComponent {
 
   navigateToCheck(): void {
     // Navigate to '/check' using the Router service
-    this.router.navigate(['check']);
+    this.router.navigate(['booking']);
   }
 
 }
