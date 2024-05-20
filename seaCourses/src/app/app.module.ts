@@ -24,13 +24,10 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { StripeModule } from 'stripe-angular';
-
 import { LoginComponent } from './components/login/login.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { NgToastModule } from 'ng-angular-popup';
 import { BookingComponent } from './components/booking/booking.component';
-// import { NgToastModule } from 'ng-angular-popup';
 
 @NgModule({
   declarations: [

@@ -31,7 +31,7 @@ const routes: Routes = [
   {path:'IELTS',component:IELTSComponent},
   {path:'english',component:EnglishComponent},
   {path:'photos',component:PhotosComponent},
-  {path:'check',component:CheckComponent},
+  // {path:'check',component:CheckComponent},
   {path:'dash',component:DashboardComponent ,canActivate: [authGuard]},
   {path: 'login', component:LoginComponent},
   {path:'booking',component:BookingComponent},

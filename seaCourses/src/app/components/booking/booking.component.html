@@ -12,7 +12,7 @@
         <div class="col-lg-8">
           <div class="contact-form bg-secondary rounded p-5">
             <div id="success"></div>
-            <form name="sentMessage" id="contactForm" novalidate="novalidate">
+            <form (ngSubmit)="submitEnrollForm()" name="sentMessage" id="contactForm" novalidate="novalidate">
               <div class="control-group">
                 <input
                   type="text"
@@ -21,6 +21,7 @@
                   name="name"
                   placeholder="الاسم"
                   required="required"
+                  [(ngModel)]="formData.name"
                   data-validation-required-message="Please enter your name"
                 />
                 <p class="help-block text-danger"></p>
@@ -33,6 +34,7 @@
                   id="phone"
                   name="phone"
                   placeholder="phone"
+                  [(ngModel)]="formData.phoneNumber"
                   required="required"
                   data-validation-required-message="Please enter your phone"
                 />
@@ -47,12 +49,13 @@
                   name="email"
                   placeholder="البريد الالكروني"
                   required="required"
+                  [(ngModel)]="formData.email"
                   data-validation-required-message="Please enter your email"
                 />
                 <p class="help-block text-danger"></p>
               </div>
 
-              <div class="control-group">
+              <!-- <div class="control-group">
                 <input
                   type="number"
                   class="form-control border-0 p-4"
@@ -63,7 +66,7 @@
                   data-validation-required-message="Please enter your rate"
                 />
                 <p class="help-block text-danger"></p>
-              </div>
+              </div> -->
 
 
               <div class="control-group">
@@ -73,6 +76,7 @@
                   id="Payment"
                   name="Payment"
                   placeholder=" Payment Way"
+                  [(ngModel)]="formData.paymentWay"
                   required="required"
                   data-validation-required-message="Please enter your Payment way"
                 />

@@ -1,6 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { BookingService } from 'src/app/Services/booking.service';
 import { ContactSupportService } from 'src/app/Services/contact-support.service';
 import { TrainerService } from 'src/app/Services/trainer.service';
 import { environment } from 'src/environments/environment';
@@ -19,16 +20,20 @@ export class DashboardComponent implements OnInit {
 
   trainerForm!: FormGroup;
   fileToUpload!: File | null;
+  traineeArray: any[] = [];
+
 
   ngOnInit(): void {
     this.getAllTrainers();
     this.getAllContactSupport();
+    this.getAllTrainee();
   }
 
   constructor(private trainer: TrainerService,
     private fb: FormBuilder,
     private http: HttpClient,
-    private tech: ContactSupportService
+    private tech: ContactSupportService,
+    private book: BookingService
   ){
 
     this.trainerForm = this.fb.group({
@@ -36,7 +41,7 @@ export class DashboardComponent implements OnInit {
       description: ['', Validators.required],
       price:['', Validators.required],
       country: ['', Validators.required],
-      Rate:['' , Validators.required],
+      rate:['' , Validators.required],
       imageFile: ['', Validators.required]
     });
 
@@ -86,6 +91,36 @@ export class DashboardComponent implements OnInit {
     }
   }
 
+
+  // Fot Trainees
+  getAllTrainee(){
+    this.book.getAllTrainees().subscribe((res:any)=>{
+      this.traineeArray = res
+      console.log(res)
+    })
+  }
+  deleteTraineeById(id: number) {
+    const confirmed = window.confirm('Are you sure you want to delete this record?');
+      
+    // If the user confirmed the deletion
+    if (confirmed) {
+        // Proceed with deletion
+        this.book.deletetraineesById(id).subscribe(
+            () => {
+                console.log('Record deleted successfully');
+                // Refresh data after successful deletion
+                this.getAllContactSupport();
+            },
+            error => {
+                console.error('Error deleting record:', error);
+            }
+        );
+    } else {
+        // User canceled the deletion
+        console.log('Deletion canceled');
+    }
+  }
+
   getAllTrainers(){
     this.trainer.getAllTrainers().subscribe((res:any)=>{
       this.trainers = res
@@ -106,11 +141,15 @@ export class DashboardComponent implements OnInit {
     const name = this.trainerForm.get('name')!.value;
     const description = this.trainerForm.get('description')!.value;
     const country = this.trainerForm.get('country')!.value;
+    const rate = this.trainerForm.get('rate')!.value;
+    const price = this.trainerForm.get('price')!.value;
     const imageFile = this.trainerForm.get('imageFile')!.value;   
     if (name && description && country) {
       formData.append('name', name);
       formData.append('description', description);
       formData.append('country', country);
+      formData.append('rate', rate);
+      formData.append('price', price);
       formData.append('imageFile', imageFile)
     } else {
       console.error('One or more form fields are null');
