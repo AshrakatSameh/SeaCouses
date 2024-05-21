@@ -183,10 +183,13 @@
           </div>
         </div>
       </div>
+
+
+
     </div>
 
     <div class="row">
-
+<!-- 
         <div class="col-sm-6 col-md-4 mx-auto mb-4">
             <div class="box">
               <div class="detail-box">
@@ -197,7 +200,20 @@
                 <h5 class="text-left">Medical Student : Salma</h5>
               </div>
             </div>
+          </div> -->
+
+          
+        <div class="col-sm-6 col-md-4 mx-auto mb-4" *ngFor="let item of Opinions">
+          <div class="box">
+            <div class="detail-box">
+              <p>
+                  {{item.opinion}}
+              </p>
+              <br />
+              <h5 class="text-left">{{item.sender}}</h5>
+            </div>
           </div>
+        </div>
 
     </div>
   </div>

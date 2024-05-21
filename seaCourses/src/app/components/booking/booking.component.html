@@ -1,91 +1,82 @@
 
-  
-  <div class="container-fluid py-5">
+
+   <div class="container-fluid py-5 my_page">
     <div class="container py-5">
       <div class="text-center mb-5">
-        
         <h4> احجز الان.</h4>
       </div>
-  
-      
       <div class="row justify-content-center">
         <div class="col-lg-8">
           <div class="contact-form bg-secondary rounded p-5">
             <div id="success"></div>
-            <form (ngSubmit)="submitEnrollForm()" name="sentMessage" id="contactForm" novalidate="novalidate">
+            <form [formGroup]="traineeForm" (ngSubmit)="submitEnrollForm()" novalidate>
               <div class="control-group">
                 <input
                   type="text"
                   class="form-control border-0 p-4"
                   id="name"
-                  name="name"
+                  formControlName="name"
                   placeholder="الاسم"
-                  required="required"
-                  [(ngModel)]="formData.name"
-                  data-validation-required-message="Please enter your name"
+                  required
                 />
                 <p class="help-block text-danger"></p>
               </div>
-
+  
               <div class="control-group">
                 <input
                   type="text"
                   class="form-control border-0 p-4"
                   id="phone"
-                  name="phone"
+                  formControlName="phoneNumber"
                   placeholder="phone"
-                  [(ngModel)]="formData.phoneNumber"
-                  required="required"
-                  data-validation-required-message="Please enter your phone"
+                  required
                 />
                 <p class="help-block text-danger"></p>
               </div>
-
+  
               <div class="control-group">
                 <input
                   type="email"
                   class="form-control border-0 p-4"
                   id="email"
-                  name="email"
+                  formControlName="email"
                   placeholder="البريد الالكروني"
-                  required="required"
-                  [(ngModel)]="formData.email"
-                  data-validation-required-message="Please enter your email"
+                  required
                 />
                 <p class="help-block text-danger"></p>
               </div>
-
-              <!-- <div class="control-group">
+  
+              <div class="control-group">
                 <input
                   type="number"
                   class="form-control border-0 p-4"
                   id="rate"
-                  name="rate"
-                  placeholder=" rate"
-                  required="required"
-                  data-validation-required-message="Please enter your rate"
-                />
-                <p class="help-block text-danger"></p>
-              </div> -->
-
-
-              <div class="control-group">
-                <input
-                  type="text"
-                  class="form-control border-0 p-4"
-                  id="Payment"
-                  name="Payment"
-                  placeholder=" Payment Way"
-                  [(ngModel)]="formData.paymentWay"
-                  required="required"
-                  data-validation-required-message="Please enter your Payment way"
+                  formControlName="rate"
+                  placeholder="rate"
+                  required
                 />
                 <p class="help-block text-danger"></p>
               </div>
-
-              
-            
-           
+  
+              <div class="control-group">
+                <select
+                  class="form-select"
+                  aria-label="Default select example"
+                  id="paymentWay"
+                  formControlName="paymentWay"
+                  required
+                >
+                  <option value="" disabled selected>Payment Method</option>
+                  <option value="VodafoneCash">Vodafone Cash</option>
+                  <option value="Fawry">Fawry</option>
+                  <option value="InstaPay">InstaPay</option>
+                  <option value="PayPal">PayPal</option>
+                  <option value="Visa">Visa</option>
+                  <option value="MasterCard">Master Card</option>
+                </select>
+                <p class="help-block text-danger"></p>
+              </div>
+  
               <div class="text-center">
                 <button
                   class="btn btn-primary py-3 px-5"
@@ -99,8 +90,6 @@
           </div>
         </div>
       </div>
-  
-  
     </div>
   </div>
   

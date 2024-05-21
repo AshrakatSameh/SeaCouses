@@ -45,6 +45,19 @@
                             <li><a (click)="showDeleteCourseHandler()" class="dropdown-item">حذف</a></li>
                         </ul>
                     </li>
+
+                    <li class="nav-item dropdown">
+                      <!-- Dropdown menu for Home -->
+                      <a href="#" class="nav-link px-0 align-middle dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                          <i class="fs-4 bi-chat"></i> <span class="mr-2 d-none d-sm-inline">قالو عنا</span>
+                      </a>
+                      <ul class="dropdown-menu">
+                          <!-- Dropdown items -->
+                          <li><a class="dropdown-item" (click)="showTellingUsListHandler()">عرض</a></li>
+                          <li><a class="dropdown-item" (click)="showAddTellingUsHandler()">اضافه</a></li>
+                          <li><a class="dropdown-item" (click)="showDeleteTellingUsHandler()">حذف</a></li>
+                      </ul>
+                  </li>
                     
                   
                 </ul>
@@ -62,12 +75,7 @@
                 <table class="table table-striped table-sm">
                   <thead>
                     <tr>
-                      <!-- <th>الرقم التسلسلي</th>
-                      <th>الأسم</th>
-                      <th>الوصف</th>
-                      <th>التقييم</th>
-                      <th>البلد</th>
-                      <th>الصورة</th> -->
+                     
                       <th>Serial Number</th>
                       <th>Name</th>
                       <th>Description</th>
@@ -522,10 +530,70 @@
                     </div>
                   </div>
 
-                  <!-- Show Course list -->
-             
-              
-
         </div>
     </div>
+
+                     <!-- Add Telling US  -->
+
+                     <div class="container-fluid py-5" *ngIf="showAddTellingUs">
+                      <div class="container py-5">
+                        <div class="text-center mb-5">
+                       
+                          <h4>أضافة راي متدرب.</h4>
+                        </div>
+                    
+                        
+                        <div class="row justify-content-center ">
+                          <div class="col-lg-8">
+                            <div class="contact-form my_form rounded p-5">
+                              <div id="success"></div>
+                              <form name="sentMessage" (ngSubmit)="submitOpinionForm()" id="contactForm" novalidate="novalidate">
+
+                                <div class="control-group">
+                                  <input
+                                    type="text"
+                                    class="form-control border-0 p-4"
+                                    id="option"
+                                    name="opinion" 
+                                    placeholder="الراي"
+                                    required
+                                    [(ngModel)]="formData.opinion"
+                                    data-validation-required-message="Please enter your option"
+                                  />
+                                  <p class="help-block text-danger"></p>
+                                </div>
+                              
+                                <div class="control-group">
+                                  <input
+                                    type="text"
+                                    class="form-control border-0 p-4"
+                                    id="who"
+                                    name="sender" 
+                                    placeholder="من المرسل"
+                                    [(ngModel)]="formData.sender"
+                                    required
+                                    data-validation-required-message="Please enter who"
+                                  />
+                                  <p class="help-block text-danger"></p>
+                                </div>
+                              
+                                <div class="text-center">
+                                  <button
+                                    class="btn btn-primary py-3 px-5"
+                                    type="submit"
+                                  >
+                                    حفظ
+                                  </button>
+                                </div>
+                              </form>
+
+                            </div>
+                          </div>
+                        </div>
+                    
+                    
+                      </div>
+                    </div>
+
+
 </div>

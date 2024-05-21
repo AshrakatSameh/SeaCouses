@@ -1,0 +1,16 @@
+.my_page{
+    background-color: #dbdbdb;
+}
+/* Add this CSS to style the placeholder option */
+select.form-select option[value=""][disabled] {
+    display: none; /* Hide the placeholder option in the dropdown */
+  }
+  
+  select.form-select:invalid {
+    color: gray; /* Placeholder text color */
+  }
+  
+  select.form-select option:not(:disabled) {
+    color: black; /* Normal option text color */
+  }
+  

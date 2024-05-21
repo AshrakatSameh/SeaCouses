@@ -1,3 +1,5 @@
+
+
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -18,53 +20,38 @@ enum PaymentTypes {
   templateUrl: './booking.component.html',
   styleUrls: ['./booking.component.css']
 })
-export class BookingComponent  implements OnInit{
-
-  private apiUrl= environment.apiUrl;
-  // contactSupports:any [] = [];
+export class BookingComponent implements OnInit {
+  private apiUrl = environment.apiUrl;
   formData: any = {}; 
-  traineeArray: any[] = [];
   traineeForm!: FormGroup;
 
-  
-  constructor(private trainee: BookingService ,
-    private fb: FormBuilder,
-    private http: HttpClient,
-  ){
+  constructor(private fb: FormBuilder, private http: HttpClient) { }
 
-    // this.traineeForm = this.fb.group({
-    //   name: ['', Validators.required],
-    //   email: ['', Validators.required],
-    //   phoneNumber:['', Validators.required],
-    //   rate: ['', Validators.required],
-    //   paymentWay:['' , Validators.required],
-    // });
-
-  
- 
-  }
   ngOnInit(): void {
+    this.traineeForm = this.fb.group({
+      name: ['', Validators.required],
+      phoneNumber: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      rate: ['', Validators.required],
+      paymentWay: ['', Validators.required]
+    });
   }
 
- 
   submitEnrollForm(): void {
-    // Send form data to API
-    this.http.post(`${this.apiUrl}Trainee/addTrainee`, this.formData)
-      .subscribe(response => {
-        alert("تم الارسال");
-        // Optionally, reset the form after successful submission
-        this.resetForm();
-      }, error => {
-        
-        alert('خطا في التسجيل');
-      });
-  }
-  resetForm(): void {
-    // Clear form data
-    this.formData = {};
+    if (this.traineeForm.valid) {
+      this.http.post(`${this.apiUrl}Trainee/addTrainee`, this.traineeForm.value)
+        .subscribe(response => {
+          alert("تم الارسال");
+          this.traineeForm.reset();
+        }, error => {
+          alert('خطا في التسجيل');
+        });
+    } else {
+      alert('Please fill out the form correctly.');
+    }
   }
 }
-  
+
 
   
   
