@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Message } from 'ng-angular-popup';
 import { BookingService } from 'src/app/Services/booking.service';
 import { ContactSupportService } from 'src/app/Services/contact-support.service';
+import { TellingUSService } from 'src/app/Services/telling-us.service';
 import { TrainerService } from 'src/app/Services/trainer.service';
 import { environment } from 'src/environments/environment.development';
 
@@ -16,6 +17,7 @@ export class DashboardComponent implements OnInit {
   trainers: any[] = [];
   // myForm!: FormGroup ;
   contactSupport: any[] = [];
+  Opinions:any[] = [];
     formData: any = {}; // Object to hold form data
 
 
@@ -32,6 +34,7 @@ export class DashboardComponent implements OnInit {
     this.getAllTrainers();
     this.getAllContactSupport();
     this.getAllTrainee();
+    this.getAllOpinions();
   }
 
   constructor(
@@ -39,7 +42,8 @@ export class DashboardComponent implements OnInit {
     private fb: FormBuilder,
     private http: HttpClient,
     private tech: ContactSupportService,
-    private book: BookingService
+    private book: BookingService,
+    private tellingService :TellingUSService
   ) {
     this.trainerForm = this.fb.group({
       name: ['', Validators.required],
@@ -222,6 +226,36 @@ export class DashboardComponent implements OnInit {
   resetForm(): void {
     // Clear form data
     this.formData = {};
+  }
+
+  getAllOpinions() {
+    this.tellingService.getAllOpinions().subscribe((res: any) => {
+      this.Opinions = res;
+    });
+  }
+
+  
+  deleteOpinionById(id: number) {
+    const confirmed = window.confirm(
+      'Are you sure you want to delete this record?'
+    );
+
+    // If the user confirmed the deletion
+    if (confirmed) {
+      // Proceed with deletion
+      this.tellingService.deleteOpinionById(id).subscribe(
+        () => {
+          console.log('Record deleted successfully');
+          this.getAllOpinions();
+        },
+        (error) => {
+          console.error('Error deleting record:', error);
+        }
+      );
+    } else {
+      // User canceled the deletion
+      console.log('Deletion canceled');
+    }
   }
 
 

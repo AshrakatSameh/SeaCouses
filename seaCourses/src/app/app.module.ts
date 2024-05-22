@@ -28,6 +28,7 @@ import { LoginComponent } from './components/login/login.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { NgToastModule } from 'ng-angular-popup';
 import { BookingComponent } from './components/booking/booking.component';
+import { WhatsupComponent } from './shared/whatsup/whatsup.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { BookingComponent } from './components/booking/booking.component';
     CheckComponent,
     DashboardComponent,
     LoginComponent,
-    BookingComponent
+    BookingComponent,
+    WhatsupComponent
     
   ],
   imports: [

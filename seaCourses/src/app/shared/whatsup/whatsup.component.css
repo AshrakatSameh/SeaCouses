@@ -1,0 +1,16 @@
+.whatsapp-link {
+    position: fixed;
+    right: 20px; /* Adjust this value to move left or right */
+    top: 400px; /* Adjust this value to move up or down */
+    z-index: 1000; /* Ensure it stays on top of other elements */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+  }
+  
+  .whatsapp-link img {
+    width: 50px; /* Adjust size as needed */
+    height: 50px; /* Adjust size as needed */
+  }
+  
