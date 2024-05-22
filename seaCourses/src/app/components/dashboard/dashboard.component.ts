@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Message } from 'ng-angular-popup';
 import { BookingService } from 'src/app/Services/booking.service';
 import { ContactSupportService } from 'src/app/Services/contact-support.service';
+import { PhotoService } from 'src/app/Services/photo.service';
 import { TrainerService } from 'src/app/Services/trainer.service';
 import { environment } from 'src/environments/environment.development';
 
@@ -14,6 +15,7 @@ import { environment } from 'src/environments/environment.development';
 })
 export class DashboardComponent implements OnInit {
   trainers: any[] = [];
+  photos: any[]=[];
   // myForm!: FormGroup ;
   contactSupport: any[] = [];
     formData: any = {}; // Object to hold form data
@@ -32,6 +34,7 @@ export class DashboardComponent implements OnInit {
     this.getAllTrainers();
     this.getAllContactSupport();
     this.getAllTrainee();
+    this.getAllPhotos();
   }
 
   constructor(
@@ -39,7 +42,8 @@ export class DashboardComponent implements OnInit {
     private fb: FormBuilder,
     private http: HttpClient,
     private tech: ContactSupportService,
-    private book: BookingService
+    private book: BookingService,
+    private photo: PhotoService
   ) {
     this.trainerForm = this.fb.group({
       name: ['', Validators.required],
@@ -130,6 +134,15 @@ export class DashboardComponent implements OnInit {
     }
   }
 
+  // Our photos
+  getAllPhotos() {
+    this.photo.getAllPhotos().subscribe((res: any) => {
+      this.photos = res;
+
+      console.log(this.trainers);
+    });
+  }
+
   getAllTrainers() {
     this.trainer.getAllTrainers().subscribe((res: any) => {
       this.trainers = res;
@@ -165,7 +178,7 @@ export class DashboardComponent implements OnInit {
     formData.append('imageFile', this.fileToUpload!); // Assert non-null with !
 
     this.http.post<any>(
-      'http://localhost:5000/api/Trainer/addTrainer',
+      this.tenp + 'Trainer/addTrainer',
       formData
     );
     this.http.post<any>(this.tenp + '/AddTrainer', formData).subscribe(
@@ -248,6 +261,10 @@ export class DashboardComponent implements OnInit {
   showAddTrainer = false;
   showDeleteTrainer = false;
 
+  showPhotosList = false;
+  showAddPhoto= false;
+  showDeletePhoto = false;
+
   showTraineeList = false;
   showAddTrainee = false;
   showDeleteTrainee = false;
@@ -264,6 +281,10 @@ export class DashboardComponent implements OnInit {
     this.showTrainerList = true;
     this.showAddTrainer = false;
     this.showDeleteTrainer = false;
+
+    this.showPhotosList = false;
+    this.showAddPhoto= false;
+    this.showDeletePhoto = false;
 
     this.showTraineeList = false;
     this.showAddTrainee = false;
@@ -283,6 +304,10 @@ export class DashboardComponent implements OnInit {
     this.showAddTrainer = true;
     this.showDeleteTrainer = false;
 
+    this.showPhotosList = false;
+    this.showAddPhoto= false;
+    this.showDeletePhoto = false;
+
     this.showTraineeList = false;
     this.showAddTrainee = false;
     this.showDeleteTrainee = false;
@@ -300,6 +325,10 @@ export class DashboardComponent implements OnInit {
     this.showTrainerList = false;
     this.showAddTrainer = false;
     this.showDeleteTrainer = true;
+
+    this.showPhotosList = false;
+    this.showAddPhoto= false;
+    this.showDeletePhoto = false;
 
     this.showTraineeList = false;
     this.showAddTrainee = false;
@@ -319,6 +348,10 @@ export class DashboardComponent implements OnInit {
     this.showAddTrainer = false;
     this.showDeleteTrainer = false;
 
+    this.showPhotosList = false;
+    this.showAddPhoto= false;
+    this.showDeletePhoto = false;
+
     this.showTraineeList = true;
     this.showAddTrainee = false;
     this.showDeleteTrainee = false;
@@ -336,6 +369,10 @@ export class DashboardComponent implements OnInit {
     this.showTrainerList = false;
     this.showAddTrainer = false;
     this.showDeleteTrainer = false;
+
+    this.showPhotosList = false;
+    this.showAddPhoto= false;
+    this.showDeletePhoto = false;
 
     this.showTraineeList = false;
     this.showAddTrainee = true;
@@ -355,6 +392,10 @@ export class DashboardComponent implements OnInit {
     this.showAddTrainer = false;
     this.showDeleteTrainer = false;
 
+    this.showPhotosList = false;
+    this.showAddPhoto= false;
+    this.showDeletePhoto = false;
+
     this.showTraineeList = false;
     this.showAddTrainee = false;
     this.showDeleteTrainee = true;
@@ -372,6 +413,10 @@ export class DashboardComponent implements OnInit {
     this.showTrainerList = false;
     this.showAddTrainer = false;
     this.showDeleteTrainer = false;
+
+    this.showPhotosList = false;
+    this.showAddPhoto= false;
+    this.showDeletePhoto = false;
 
     this.showTraineeList = false;
     this.showAddTrainee = false;
