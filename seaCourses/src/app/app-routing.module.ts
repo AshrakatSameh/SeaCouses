@@ -17,6 +17,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LoginComponent } from './components/login/login.component';
 import { authGuard } from './guards/auth.guard';
 import { BookingComponent } from './components/booking/booking.component';
+import { WhatsupComponent } from './shared/whatsup/whatsup.component';
 
 const routes: Routes = [
   {path:'home',component:MainComponent},
