@@ -95,6 +95,8 @@
                       <th>Rate</th>
                       <th>Country</th>
                       <th>Price</th>
+                      <th>Photo</th>
+
                     </tr>
                   </thead>
                   <tbody>
@@ -107,6 +109,8 @@
                       <!-- <td><img [src]="item.imageUrl" width="40px" height="40px"></td> -->
                       <!-- <td>{{item.imageFile}}</td> -->
                       <td>{{item.price}}</td>
+                      <td><img [src]="item.imageUrl" width="40px" height="40px"></td>
+
 
                     </tr>
                 
@@ -123,13 +127,14 @@
                 <table class="table table-striped table-sm">
                   <thead>
                     <tr>
-                      <th>الرقم التسلسلي</th>
-                      <th>الأسم</th>
-                      <th>الوصف</th>
-                      <th>التقييم</th>
-                      <th>البلد</th>
-                      <th>الصورة</th>
-                      <th>حذف</th>
+                      <th>Serial Number</th>
+                      <th>Name</th>
+                      <th>Description</th>
+                      <th>Rate</th>
+                      <th>Country</th>
+                      <th>Price</th>
+                      <th>Photo</th>
+                      <th>Delete</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -139,8 +144,10 @@
                       <td>{{item.description}}</td>
                       <td>{{item.rate}}</td>
                       <td>{{item.country}}</td>
+                      <td>{{item.price}}</td>
+
                       <td><img [src]="item.imageUrl" width="40px" height="40px"></td>
-                      <td><button class="btn btn-danger" (click)="deletenewsById(item.id)">حذف </button></td>
+                      <td><button class="btn btn-danger" (click)="deletenewsById(item.id)">Delete </button></td>
                     </tr>
                    
                    
@@ -307,7 +314,7 @@
 
 
                           <div class="control-group">
-                            <input class="form-control border-0 p-4" name="imageFile"                
+                            <input class="form-control border-0 " name="imageFile"                
                    formControlName="imageFile"
                 type="file" id="imageFile" (change)="handleFileInput($event)">
                           </div>
@@ -490,7 +497,6 @@
                       <th>Name</th>
                       <th>Email</th>
                       <th>Phone Number</th>
-                      <th>Rate</th>
                       <th>Payment way</th>
 
 
@@ -503,7 +509,6 @@
                       <td>{{item.name}}</td>
                       <td>{{item.email}}</td>
                       <td>{{item.phoneNumber}}</td>
-                      <td>{{item.rate}}</td>
                       <td>{{item.paymentWay}}</td>
                     </tr>
                  
@@ -518,36 +523,26 @@
                 <table class="table table-striped table-sm">
                   <thead>
                     <tr>
-                      <th>الرقم التسلسلي</th>
-                      <th>عنوان الخبر</th>
-                      <th>الخبر</th>
-                      <th>الصورة</th>
-                      <th>حذف</th>
+                      <th>Serial Number</th>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Phone Number</th>
+                      <th>Payment way</th>
+                      <th>Delete</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <!-- <tr >
+                    
+                    <tr *ngFor="let item of traineeArray">
                       <th scope="row">{{item.id}}</th>
-                      <td>{{item.title}}</td>
-                      <td>{{item.description}}</td>
-                      <td>{{item.imageUrl}}</td>
-                    </tr> -->
-                    <tr>
-                      <th scope="row">1001</th>
-                      <td>Mark Otto</td>
-                      <td>Japan</td>
-                      <td>Trainee</td>
-                      <td><button class="btn btn-danger">حذف </button></td>
+                      <td>{{item.name}}</td>
+                      <td>{{item.email}}</td>
+                      <td>{{item.phoneNumber}}</td>
+                      <td>{{item.paymentWay}}</td>
+                      <td><button class="btn btn-danger">Delete </button></td>
 
                     </tr>
-                    <tr>
-                      <th scope="row">1001</th>
-                      <td>Mark Otto</td>
-                      <td>Japan</td>
-                      <td>Html</td>
-                      <td><button class="btn btn-danger">حذف </button></td>
-
-                    </tr>
+                   
                   </tbody>
                 </table>
               </div>
