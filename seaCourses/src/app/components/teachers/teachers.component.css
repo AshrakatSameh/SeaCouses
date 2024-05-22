@@ -17,13 +17,13 @@
 
 .team-img img {
     width: 100%; /* Fill the container width */
-    height: 100%; /* Fill the container height */
+    height: 256px; /* Fill the container height */
     object-fit: cover; /* Ensure the image covers the space */
 }
 
 /* Adjusting padding and margin for the text content */
 .bg-secondary {
-    height: 50%; /* Adjust this proportion as needed */
+    height: 70%; /* Adjust this proportion as needed */
     padding: 10px; /* Adjust padding as desired */
     margin: 0; /* Remove any margin */
 }

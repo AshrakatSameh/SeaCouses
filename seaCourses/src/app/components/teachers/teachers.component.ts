@@ -25,7 +25,11 @@ export class TeachersComponent implements OnInit {
         name: ['', Validators.required],
         description: ['', Validators.required],
         country: ['', Validators.required],
-        imageFile: ['', Validators.required]
+        imageFile: ['', Validators.required],
+        dayFrom:['', Validators.required],
+        dayTo: ['', Validators.required],
+        timeStart:['', Validators.required],
+        timeEnd: ['', Validators.required]
       });
     }
   ngOnInit(): void {

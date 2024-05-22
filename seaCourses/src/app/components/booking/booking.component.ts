@@ -32,7 +32,7 @@ export class BookingComponent implements OnInit {
       name: ['', Validators.required],
       phoneNumber: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      rate: ['', Validators.required],
+      // rate: ['', Validators.required],
       paymentWay: ['', Validators.required]
     });
   }

@@ -29,6 +29,7 @@ export class DashboardComponent implements OnInit {
 
   trainerForm!: FormGroup;
   opinionForm!:FormGroup;
+  photoForm!: FormGroup;
   fileToUpload!: File | null;
   traineeArray: any[] = [];
 
@@ -56,6 +57,10 @@ export class DashboardComponent implements OnInit {
       country: ['', Validators.required],
       rate: ['', Validators.required],
       imageFile: ['', Validators.required],
+      DayFrom:['', Validators.required],
+      DayTo: ['', Validators.required],
+      TimeStart:['', Validators.required],
+      TimeEnd: ['', Validators.required]
     });
 
     this.opinionForm = this.fb.group({
@@ -63,7 +68,24 @@ export class DashboardComponent implements OnInit {
       sender: ['', Validators.required],
       
     });
+
+    this.photoForm = this.fb.group({
+      imageFile: ['', Validators.required]
+
+    })
+   
+    
   }
+
+  daysOfWeek = [
+    { value: 0, label: 'Sunday' },
+    { value: 1, label: 'Monday' },
+    { value: 2, label: 'Tuesday' },
+    { value: 3, label: 'Wednesday' },
+    { value: 4, label: 'Thursday' },
+    { value: 5, label: 'Friday' },
+    { value: 6, label: 'Saturday' }
+  ];
 
   handleFileInput(event: Event) {
     const inputElement = event.target as HTMLInputElement;
@@ -146,6 +168,62 @@ export class DashboardComponent implements OnInit {
       console.log(this.photos);
     });
   }
+  onSubmitPhoto() {
+    if (!this.fileToUpload) {
+      console.error('No file selected');
+      return;
+    }
+    const formData = new FormData();
+    const imageFile = this.trainerForm.get('imageFile')!.value;
+    if (imageFile) {
+      formData.append('imageFile', imageFile);
+    } else {
+      console.error('One or more form fields are null');
+      return;
+    }
+
+    formData.append('imageFile', this.fileToUpload!); // Assert non-null with !
+
+    this.http.post<any>(
+      this.tenp + 'Photo',
+      formData
+    );
+    this.http.post<any>(this.apiUrl + 'Photo/AddPhoto', formData).subscribe(
+      (response) => {
+        alert('Done');
+        console.log('Photo created successfully:', response);
+        // Reset form after successful submission
+        this.photoForm.reset();
+      },
+      (error: HttpErrorResponse) => {
+        console.error('Error creating trainer:', error.error);
+        // Handle error
+      }
+    );
+  }
+
+  deletePhotoById(id: number){
+    const confirmed = window.confirm(
+      'Are you sure you want to delete this record?'
+    );
+
+    // If the user confirmed the deletion
+    if (confirmed) {
+      // Proceed with deletion
+      this.photo.deletePhotoById(id).subscribe(
+        () => {
+          console.log('Record deleted successfully');
+          this.getAllPhotos();
+        },
+        (error) => {
+          console.error('Error deleting record:', error);
+        }
+      );
+    } else {
+      // User canceled the deletion
+      console.log('Deletion canceled');
+    }
+  }
 
   getAllTrainers() {
     this.trainer.getAllTrainers().subscribe((res: any) => {
@@ -167,6 +245,11 @@ export class DashboardComponent implements OnInit {
     const rate = this.trainerForm.get('rate')!.value;
     const price = this.trainerForm.get('price')!.value;
     const imageFile = this.trainerForm.get('imageFile')!.value;
+
+    const DayFrom = this.trainerForm.get('DayFrom')!.value;
+    const DayTo = this.trainerForm.get('DayTo')!.value;
+    const TimeStart = this.trainerForm.get('TimeStart')!.value;
+    const TimeEnd = this.trainerForm.get('TimeEnd')!.value;
     if (name && description && country) {
       formData.append('name', name);
       formData.append('description', description);
@@ -174,6 +257,12 @@ export class DashboardComponent implements OnInit {
       formData.append('rate', rate);
       formData.append('price', price);
       formData.append('imageFile', imageFile);
+      formData.append('DayFrom', DayFrom);
+      formData.append('DayTo', DayTo);
+      formData.append('TimeStart', TimeStart);
+      formData.append('TimeEnd', TimeEnd);
+
+      
     } else {
       console.error('One or more form fields are null');
       return;
@@ -484,6 +573,10 @@ export class DashboardComponent implements OnInit {
     this.showAddTrainer = false;
     this.showDeleteTrainer = false;
 
+    this.showPhotosList = false;
+    this.showAddPhoto= false;
+    this.showDeletePhoto = false;
+
     this.showTraineeList = false;
     this.showAddTrainee = false;
     this.showDeleteTrainee = false;
@@ -501,6 +594,10 @@ export class DashboardComponent implements OnInit {
     this.showTrainerList = false;
     this.showAddTrainer = false;
     this.showDeleteTrainer = false;
+
+    this.showPhotosList = false;
+    this.showAddPhoto= false;
+    this.showDeletePhoto = false;
 
     this.showTraineeList = false;
     this.showAddTrainee = false;
@@ -520,6 +617,10 @@ export class DashboardComponent implements OnInit {
     this.showTrainerList = false;
     this.showAddTrainer = false;
     this.showDeleteTrainer = false;
+
+    this.showPhotosList = false;
+    this.showAddPhoto= false;
+    this.showDeletePhoto = false;
 
     this.showTraineeList = false;
     this.showAddTrainee = false;
@@ -541,6 +642,10 @@ export class DashboardComponent implements OnInit {
     this.showAddTrainer = false;
     this.showDeleteTrainer = false;
 
+    this.showPhotosList = false;
+    this.showAddPhoto= false;
+    this.showDeletePhoto = false;
+
     this.showTraineeList = false;
     this.showAddTrainee = false;
     this.showDeleteTrainee = false;
@@ -555,5 +660,50 @@ export class DashboardComponent implements OnInit {
 
   }
 
+  showAddPhotoHandler():void{
+
+    this.showTrainerList = false;
+    this.showAddTrainer = false;
+    this.showDeleteTrainer = false;
+
+    this.showPhotosList = false;
+    this.showAddPhoto= true;
+    this.showDeletePhoto = false;
+
+    this.showTraineeList = false;
+    this.showAddTrainee = false;
+    this.showDeleteTrainee = false;
+
+    this.showCoursesList = false;
+    this.showAddCourses = false;
+    this.showDeleteCourses = false;
+
+    this.showTellingUsList = false;
+    this.showAddTellingUs = false;
+    this.showDeleteTellingUs = false;
+    
+  }
+
+  showDeletePhotoHandler(): void {
+    this.showTrainerList = false;
+    this.showAddTrainer = false;
+    this.showDeleteTrainer = false;
+
+    this.showPhotosList = false;
+    this.showAddPhoto= false;
+    this.showDeletePhoto = true;
+
+    this.showTraineeList = false;
+    this.showAddTrainee = false;
+    this.showDeleteTrainee = false;
+
+    this.showCoursesList = false;
+    this.showAddCourses = false;
+    this.showDeleteCourses = false;
+
+    this.showTellingUsList = false;
+    this.showAddTellingUs = false;
+    this.showDeleteTellingUs = false;
+  }
 
 }
