@@ -292,7 +292,7 @@
                       <th>Name</th>
                       <th>Email</th>
                       <th>Message</th>
-                      <th>حذف</th>
+                      <th>Delete</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -301,7 +301,7 @@
                       <td>{{item.name}}</td>
                       <td>{{item.email}}</td>
                       <td>{{item.message}}</td>
-                      <td><button class="btn btn-danger" (click)="deleteContactSupportById(item.id)">حذف </button></td>
+                      <td><button class="btn btn-danger" (click)="deleteContactSupportById(item.id)">Delete </button></td>
                     </tr>
                   </tbody>
                 </table>
@@ -603,9 +603,58 @@
                             </div>
                           </div>
                         </div>
+
                     
                     
                       </div>
+                    </div>
+
+                    <!-- get list Telling US -->
+
+                    <div *ngIf="showTellingUsList" class="table-responsive">
+                      <table class="table table-striped table-sm">
+                        <thead>
+                          <tr>
+                            <th>Id</th>
+                            <th>Opinion</th>
+                            <th>Sender</th>
+                            
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let item of Opinions">
+                            <th scope="row">{{item.id}}</th>
+                            <td>{{item.opinion}}</td>
+                            <td>{{item.sender}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+
+
+                    <!-- Delete Telling Us -->
+
+                    <div *ngIf="showDeleteTellingUs" class="table-responsive">
+                      <table class="table table-striped table-sm">
+                        <thead>
+                          <tr>
+                            <th>Id</th>
+                            <th>Opinion</th>
+                            <th>Sender</th>
+                            <th>Delete</th>
+                            
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let item of Opinions">
+                            <th scope="row">{{item.id}}</th>
+                            <td>{{item.opinion}}</td>
+                            <td>{{item.sender}}</td>
+                            <td><button class="btn btn-danger" (click)="deleteOpinionById(item.id)">Delete </button></td>
+
+                          </tr>
+                        </tbody>
+                      </table>
                     </div>
 
 

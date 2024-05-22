@@ -1,3 +1,30 @@
 .my-class{
     background-color: white;
+    margin-left: 0px;
+}
+
+.navbar-nav {
+    display: flex;
+    flex-wrap: nowrap; /* Prevent wrapping to new line */
+    align-items: center; /* Align items vertically in the center */
+}
+
+.nav-item {
+    white-space: nowrap; /* Prevent breaking words onto a new line */
+    padding: 0 10px; /* Add some padding between items */
+}
+
+.nav-item.dropdown {
+    position: relative;
+}
+
+.nav-item.dropdown .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    display: none;
+}
+
+.nav-item.dropdown:hover .dropdown-menu {
+    display: block;
 }

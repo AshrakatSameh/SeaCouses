@@ -5,6 +5,7 @@ import { Message } from 'ng-angular-popup';
 import { BookingService } from 'src/app/Services/booking.service';
 import { ContactSupportService } from 'src/app/Services/contact-support.service';
 import { PhotoService } from 'src/app/Services/photo.service';
+import { TellingUSService } from 'src/app/Services/telling-us.service';
 import { TrainerService } from 'src/app/Services/trainer.service';
 import { environment } from 'src/environments/environment.development';
 
@@ -18,6 +19,7 @@ export class DashboardComponent implements OnInit {
   photos: any[]=[];
   // myForm!: FormGroup ;
   contactSupport: any[] = [];
+  Opinions:any[] = [];
     formData: any = {}; // Object to hold form data
 
 
@@ -35,6 +37,7 @@ export class DashboardComponent implements OnInit {
     this.getAllContactSupport();
     this.getAllTrainee();
     this.getAllPhotos();
+    this.getAllOpinions();
   }
 
   constructor(
@@ -43,7 +46,8 @@ export class DashboardComponent implements OnInit {
     private http: HttpClient,
     private tech: ContactSupportService,
     private book: BookingService,
-    private photo: PhotoService
+    private photo: PhotoService,
+    private tellingService :TellingUSService
   ) {
     this.trainerForm = this.fb.group({
       name: ['', Validators.required],
@@ -139,7 +143,7 @@ export class DashboardComponent implements OnInit {
     this.photo.getAllPhotos().subscribe((res: any) => {
       this.photos = res;
 
-      console.log(this.trainers);
+      console.log(this.photos);
     });
   }
 
@@ -235,6 +239,36 @@ export class DashboardComponent implements OnInit {
   resetForm(): void {
     // Clear form data
     this.formData = {};
+  }
+
+  getAllOpinions() {
+    this.tellingService.getAllOpinions().subscribe((res: any) => {
+      this.Opinions = res;
+    });
+  }
+
+  
+  deleteOpinionById(id: number) {
+    const confirmed = window.confirm(
+      'Are you sure you want to delete this record?'
+    );
+
+    // If the user confirmed the deletion
+    if (confirmed) {
+      // Proceed with deletion
+      this.tellingService.deleteOpinionById(id).subscribe(
+        () => {
+          console.log('Record deleted successfully');
+          this.getAllOpinions();
+        },
+        (error) => {
+          console.error('Error deleting record:', error);
+        }
+      );
+    } else {
+      // User canceled the deletion
+      console.log('Deletion canceled');
+    }
   }
 
 

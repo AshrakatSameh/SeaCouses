@@ -22,6 +22,10 @@ export class TellingUSService {
 
   }
 
+  deleteOpinionById(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.delApi}${id}`);
+  }
+
 
 
 }

@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="row border-top px-xl-5">
-        <div class="col-lg-3 d-none d-lg-block my-class">
-            <a class="d-flex align-items-center justify-content-between w-100 text-decoration-none"  href="#navbar-vertical" style="height: 67px; padding: 0 20px;">
+        <div class="col-lg-2 d-none d-lg-block my-class">
+            <a class="d-flex align-items-center   text-decoration-none"  href="#navbar-vertical" style="height: 67px; ">
                 <img src="../../../assets/img/logo.jpg" width="60px" height="40px">
             </a>
        
@@ -16,13 +16,13 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav py-0">
-                        <a routerLink="home" class="nav-item nav-link ">الرئيسية </a>
-                        <a routerLink="about" class="nav-item nav-link">قالو عننا</a>
-                        <a routerLink="courses" class="nav-item nav-link">الكورسات</a>
-                        <a routerLink="leader" class="nav-item nav-link">قائد الفريق</a>
-                        <a routerLink="teachers" class="nav-item nav-link">فريقنا</a>
+                        <a routerLink="home" class="nav-item nav-link " style="color: #ff8a1d;">الرئيسية </a>
+                        <a routerLink="about" class="nav-item nav-link" style="color: #ff8a1d;">قالو عننا</a>
+                        <a routerLink="courses" class="nav-item nav-link" style="color: #ff8a1d;">الكورسات</a>
+                        <a routerLink="leader" class="nav-item nav-link" style="color: #ff8a1d;">قائد الفريق</a>
+                        <a routerLink="teachers" class="nav-item nav-link" style="color: #ff8a1d;">فريقنا</a>
                         <div class="nav-item dropdown">
-                            <a  class="nav-link dropdown-toggle" data-toggle="dropdown">الدورات</a>
+                            <a  class="nav-link dropdown-toggle" data-toggle="dropdown" style="color: #ff8a1d;">الدورات</a>
                             <div class="dropdown-menu rounded-0 m-0">
                                 <a routerLink="medical" class="dropdown-item">المصطلحات الطبية</a>
                                 <a routerLink="englishMedical" class="dropdown-item">تدريس اللغة الإنجليزية الطبية </a>
@@ -30,16 +30,16 @@
                                 <a routerLink="english" class="dropdown-item">تعليم اللغة الانجليزية </a>
                             </div>
                         </div>
-                        <a routerLink="photos" class="nav-item nav-link">معرض الصور</a>
-                        <a routerLink="contact" class="nav-item nav-link">اتصل بنا</a>
+                        <a routerLink="photos" class="nav-item nav-link" style="color: #ff8a1d;">معرض الصور</a>
+                        <a routerLink="contact" class="nav-item nav-link" style="color: #ff8a1d;">اتصل بنا</a>
                         <!-- <a routerLink="dash" class="nav-item nav-link">لوحة التحكم</a> -->
                     </div>
                     <div *ngIf="isLoggedIn(); then loggedInTemplate else loggedOutTemplate"></div>
                     <ng-template #loggedInTemplate >
                         <div class="navbar-nav py-0" *ngIf="authService.getUserDetail() as userDetail">
-                            <span class="nav-item nav-link" routerLink = "dash">{{userDetail.fullName}} Dashboard</span>
-                            <button class="dropdown-item" (click)="logout()">
-                                <i class="bi bi-box-arrow-right" ></i> Logout
+                            <a class="nav-item nav-link" routerLink = "dash" style="color: #ff8a1d;">{{userDetail.fullName}} Dashboard</a>
+                            <button class="nav-item nav-link" (click)="logout()" style="color: #ff8a1d;">
+                                <i class="bi bi-box-arrow-right" style="color: #ff8a1d;"></i> Logout
                             </button>
                            
                         </div>
